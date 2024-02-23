@@ -69,11 +69,11 @@ GPIO.output(buttonLEDOutputC, False)
 GPIO.output(buttonLEDOutputD, False)
 """
 
-GPIO.setup(buttonPinResponse, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(buttonPinResponse, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(buttonLEDOutput, GPIO.OUT)
 
-GPIO.setup(buttonPinUpResponse, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(buttonPinDownResponse, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(buttonPinUpResponse, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(buttonPinDownResponse, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 with open('/home/snm/server/a.txt', 'r') as file:
     lines = file.readlines()
