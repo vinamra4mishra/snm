@@ -2,7 +2,7 @@ const express = require('express');
 const fs = require('fs');
 const app = express();
 const port = 3000;
-const filePath = '/home/snm/server/data/a.txt';
+const filePath = '/home/snm/server/a.txt';
 
 app.get('/', (req, res) => {
     // res.sendFile(__dirname + '/index.html');

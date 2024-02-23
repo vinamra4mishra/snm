@@ -1,4 +1,4 @@
- # Read the decimal value from the file
+# Read the decimal value from the file
 import RPi.GPIO as GPIO
 from time import sleep  # Import the sleep function
 
@@ -75,7 +75,7 @@ GPIO.setup(buttonLEDOutput, GPIO.OUT)
 GPIO.setup(buttonPinUpResponse, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(buttonPinDownResponse, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
-with open('/home/snm/server/data/a.txt', 'r') as file:
+with open('/home/snm/server/a.txt', 'r') as file:
     lines = file.readlines()
     # Read line 1 and extract the number as a decimal
     response_to_disp = int(lines[4].strip())  # Convert the string to a int
@@ -103,12 +103,12 @@ try:
             print(response_to_disp)
             sleep(0.25)
             # Write the updated decimal value back to the file
-            with open('/home/snm/server/data/a.txt', 'r') as file:
+            with open('/home/snm/server/a.txt', 'r') as file:
                 # Read and store all lines
                 lines = file.readlines()
                 # Update the second number in line 1
                 lines[4] = str(response_to_disp) + '\n'
-            with open('/home/snm/server/data/a.txt', 'w') as file:
+            with open('/home/snm/server/a.txt', 'w') as file:
                 file.writelines(lines)
 
         # code to collect response for if DOWN button is pressed
@@ -121,12 +121,12 @@ try:
             print(response_to_disp)
             sleep(0.25)
             # Write the updated decimal value back to the file
-            with open('/home/snm/server/data/a.txt', 'r') as file:
+            with open('/home/snm/server/a.txt', 'r') as file:
                 # Read and store all lines
                 lines = file.readlines()
                 # Update the second number in line 1
                 lines[4] = str(response_to_disp) + '\n'
-            with open('/home/snm/server/data/a.txt', 'w') as file:
+            with open('/home/snm/server/a.txt', 'w') as file:
                 file.writelines(lines)
 
         # code to collect response
@@ -138,10 +138,10 @@ try:
             print(response_to_disp)
             print(new_response)
             # Write the updated decimal value back to the file
-            with open('/home/snm/server/data/a.txt', 'r') as file:
+            with open('/home/snm/server/a.txt', 'r') as file:
                 lines = file.readlines()
                 lines[response_to_disp] = str(new_response) + '\n'
-            with open('/home/snm/server/data/a.txt', 'w') as file:
+            with open('/home/snm/server/a.txt', 'w') as file:
                 file.writelines(lines)
             GPIO.output(buttonLEDOutput, True)
             print("LED A ON")
@@ -150,17 +150,17 @@ try:
             print("LED A OFF")
             sleep(0.05)
 
-        """
+        """        
         # code to collect response for question A
         buttonPressA = GPIO.input(buttonPinResponseA)
         if not buttonPressA:
             print("Button pressed for Question A")
             response_a_value += 1
             # Write the updated decimal value back to the file
-            with open('/home/snm/server/data/a.txt', 'r') as file:
+            with open('/home/snm/server/a.txt', 'r') as file:
                 lines = file.readlines()
                 lines[1] = str(response_a_value) + '\n'
-            with open('/home/snm/server/data/a.txt', 'w') as file:
+            with open('/home/snm/server/a.txt', 'w') as file:
                 file.writelines(lines)
             GPIO.output(buttonLEDOutputA, True)
             print("LED A ON")
@@ -175,12 +175,12 @@ try:
             print("Button pressed for Question B")
             response_b_value += 1
             # Write the updated decimal value back to the file
-            with open('/home/snm/server/data/a.txt', 'r') as file:
+            with open('/home/snm/server/a.txt', 'r') as file:
                 # Read and store all lines
                 lines = file.readlines()
                 # Update the second number in line 2
                 lines[2] = str(response_b_value) + '\n'
-            with open('/home/snm/server/data/a.txt', 'w') as file:
+            with open('/home/snm/server/a.txt', 'w') as file:
                 file.writelines(lines)
             GPIO.output(buttonLEDOutputB, True)
             print("LED B ON")
@@ -195,12 +195,12 @@ try:
             print("Button pressed for Question C")
             response_c_value += 1
             # Write the updated decimal value back to the file
-            with open('/home/snm/server/data/a.txt', 'r') as file:
+            with open('/home/snm/server/a.txt', 'r') as file:
                 # Read and store all lines
                 lines = file.readlines()
                 # Update the second number in line 2
                 lines[3] = str(response_c_value) + '\n'
-            with open('/home/snm/server/data/a.txt', 'w') as file:
+            with open('/home/snm/server/a.txt', 'w') as file:
                 file.writelines(lines)
             GPIO.output(buttonLEDOutputC, True)
             print("LED C ON")
@@ -215,12 +215,12 @@ try:
             print("Button pressed for Question D")
             response_d_value += 1
             # Write the updated decimal value back to the file
-            with open('/home/snm/server/data/a.txt', 'r') as file:
+            with open('/home/snm/server/a.txt', 'r') as file:
                 # Read and store all lines
                 lines = file.readlines()
                 # Update the second number in line 1
                 lines[4] = str(response_d_value) + '\n'
-            with open('/home/snm/server/data/a.txt', 'w') as file:
+            with open('/home/snm/server/a.txt', 'w') as file:
                 file.writelines(lines)
             GPIO.output(buttonLEDOutputD, True)
             print("LED D ON")
