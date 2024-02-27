@@ -8,7 +8,7 @@
    </script>
     <style>
         body {
-            background-color: #310e2f;
+            background-color: #dca9da;
             color: #4B0082; /* Indigo for text */
             font-family: Arial, sans-serif;
             margin: 10%;
@@ -21,22 +21,22 @@
         }
         h1 {
             padding:5px;
-            color: #ffffff; /* Indigo */
+            color: #211111; /* Indigo */
             font-size: 50px;
         }
         h3 {
             padding:5px;
-            color: #ffffff; /* Indigo */
+            color: #211111;  /* Indigo */
         }
         h2 {
             padding:5px;
-            color: #ffffff; /* Indigo */
+            color: #211111;  /* Indigo */
             font-size: 35px;
         }
 
         #countValue {
             font-size: 188px;
-            color: #ffffff; /* Turquoise */
+            color: #211111;   /* Turquoise */
         }
         #human {
             /* font-size: 5px; */
@@ -68,7 +68,7 @@
     }
 
     .item {
-        border: 1px solid rgb(255, 255, 255);
+        border: 1px solid rgb(0, 0, 0);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -111,7 +111,7 @@
         left: 71%;
         transform: translate(-50%, -50%);
         text-align: center;
-        color: white;
+        color: rgb(0, 0, 0);
         z-index: 1;
         font-size: 16px;
     }
@@ -122,7 +122,7 @@
         left: 60%;
         transform: translate(-50%, -50%);
         text-align: center;
-        color: white;
+        color: rgb(0, 0, 0);
         z-index: 1;
         font-size: 16px;
     }
@@ -133,6 +133,9 @@
     .pno2{
         color: aqua;
     }
+    #heading1{
+        font-size:60px;
+    }
     </style>
 
 </head>
@@ -142,19 +145,19 @@
 
         <div class="item item-1">
             <div id="pno">
-                <h1>Have you ever experienced negative emotions when a friend purchased a larger car than yours?</h1>
+                <h1></h1>
             </div>
         </div>
 
         <div class="item item-2">
             <div class="pno3">
-                <h2 id="heading1" >NUMBER OF PEOPLE WHO AGREE</h2>
+                <h1 id="heading1" >NUMBER OF PEOPLE WHO AGREE</h1>
             </div>
             <div>
                 <span id="countValue">0</span> <span id="pno2" style="color: aliceblue; font-size: 100px;">%</span>
             </div>
             <div class="pno4" >
-                <h2 id="heading2">NUMBER OF PEOPLE WHO AGREE</h2>
+                <h1 id="heading2">NUMBER OF PEOPLE WHO AGREE</h1>
             </div>
         </div>
 
@@ -207,7 +210,7 @@
                     label: 'Variable',
                     //data: [100],
                      data: [10],
-                    backgroundColor: 'white',
+                    backgroundColor: 'black',
                     borderColor: '#4B0082',
                     borderWidth: 1
                 }]
@@ -247,25 +250,14 @@
             const percent = document.getElementById('percentage_sym');
             const human = document.getElementById('human');
 
-            const newHTML1 = `<h1>1 - Did you feel jealous looking at someone's bigger
-home?</h1>`;
-            const newHTML2 = `<h1>2 - Did you ever feel disappointed when your favorite
-dish was unavailable?</h1>`;
-            const newHTML3 = `<h1>3 - Did you ever feel sad seeing your friends wear
-branded clothes that you can't buy?</h1>`;
-            const newHTML4 = `<h1>4 - Did you ever complain about anything to God?</h1>`;
-            const newHTML5 = `<h1 style="font-size: 60px;">Let’s See The Results.....Nothing To Worry !!! </h1>`;
+            const newHTML1 = `<h1>1 - Did you sleep yesterday with a roof over your head?</h1>`;
+            const newHTML2 = `<h1>2 - Did you have a full stomach when you went to bed
+yesterday?</h1>`;
+            const newHTML3 = `<h1>3 - Did you have clothes to cover your body today?</h1>`;
+            const newHTML4 = `<h1>4 - Do you feel thankful to God for anything in life?</h1>`;
+            const newHTML5 = `<h1 style="font-size: 60px;">CONGRATULATIONS !!! </h1>`;
             const newHTML6 = ` `;
-            const newHTML7 = `%`;               
-
-            function generateRandomNumber() {
-            var randomNumber = Math.random(); // Generate random number between 0 and 1
-            var scaledNumber = randomNumber * (89.9 - 80.1); // Scale to the range 0 to (89.9 - 80.1)
-            var shiftedNumber = scaledNumber + 80.1; // Shift to the range 80.1 to 89.9
-  return shiftedNumber;
-}
-
-
+            const newHTML7 = ``;               
 
             const eventSource = new EventSource('/updates');
 
@@ -336,15 +328,15 @@ branded clothes that you can't buy?</h1>`;
                 if (integers[4] == 4) {
                     div.innerHTML = newHTML5;
                     div2.innerHTML = newHTML7;
-                    heading1.innerText = "Around ";
-                    heading2.innerText = "of the people of the world have the same thought";
+                    heading1.innerText = " 750,000,000";
+                    heading2.innerText = "Individuals worldwide do not have their basic necessities fulfilled, consider yourself FORTUNATE";
 
-                    let a=((integers[0]+integers[1]+integers[2]+integers[3])/(integers[0]+integers[1]+integers[2]+integers[3]+172))*100;
+                    /* let a=((integers[0]+integers[1]+integers[2]+integers[3])/(integers[0]+integers[1]+integers[2]+integers[3]+1000))*100;
                     var roundedValue = a.toFixed(2);
-                    console.log(roundedValue);
+                    console.log(roundedValue); */
 
-                    countValue.textContent = roundedValue;
-                    barChart.data.datasets[0].data = [roundedValue];
+                    countValue.textContent = '';
+                    barChart.data.datasets[0].data = [750000000];
                     barChart.update();
                 }
             };
