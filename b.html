@@ -29,8 +29,8 @@
 
         h1 {
             padding: 0;
-            margin: 0;
-            line-height: 1.25em;
+	margin: 0;
+line-height: 1.25em;
             color: #000;
             /* Indigo */
             font-size: 50px;
@@ -75,10 +75,10 @@
 
         #upper-box {
             height: 33vh;
-            display: table-cell;
-            width: 100vw;
-            padding: 1vh 2vh;
-            vertical-align: middle;
+	display: table-cell;
+width: 100vw;
+padding: 1vh 2vh;
+vertical-align: middle;
         }
 
         #lower-box {
@@ -98,11 +98,9 @@
         }
 
         .item-2 {
-            padding: 24px;
+	padding: 24px;
             float: left;
             width: calc(67% - 4vh);
-display: grid;
-vertical-align: middle;
         }
 
         .item-3 {
@@ -150,12 +148,11 @@ vertical-align: middle;
 <body>
     <div class="item item-1" id="upper-box">
         <div id="pno">
-            <h1>Have you ever experienced negative emotions when ar than yours? emotions when a friend purchased a
-                larger car than yours?</h1>
+            <h1>Have you ever experienced negative emotions when ar than yours? emotions when a friend purchased a larger car than yours?</h1>
         </div>
     </div>
     <div id="lower-box">
-        <div class="item item-3" id="chart-box">
+        <div class="item item-3">
             <div>
                 <div class="lable1"></div>
                 <div class="lable2"></div>
@@ -164,7 +161,7 @@ vertical-align: middle;
                 <canvas id="barChart"></canvas>
             </div>
         </div>
-        <div class="item item-2" id="result-box">
+        <div class="item item-2">
             <div class="pno3">
                 <h2 id="heading1">NUMBER OF PEOPLE WHO AGREE</h2>
             </div>
@@ -230,17 +227,9 @@ vertical-align: middle;
             const newHTML2 = `<h1>DID YOU EVER FEEL DISAPPOINTMENT WHEN YOUR FAVORITE DISH WASN'T AVAILABLE?</h1>`;
             const newHTML3 = `<h1>DID YOU EVER FEEL SAD SEEING YOUR FRIENDS WEAR BRANDED CLOTHES THAT YOU DON’T HAVE?</h1>`;
             const newHTML4 = `<h1>DID YOU EVER COMPLAIN TO GOD ABOUT ANYTHING?</h1>`;
-            const newHTML5 = `<h1>NOTHING TO WORRY!!! </h1>`;
+            const newHTML5 = `<h1 style="font-size: 60px;">NOTHING TO WORRY!!! </h1>`;
             const newHTML6 = ` `;
             const newHTML7 = `%`;
-
-            const newHTML11 = `<h1>DID YOU SLEEP LAST NIGHT WITH A ROOF OVER YOUR HEAD?</h1>`;
-            const newHTML12 = `<h1>DID YOU HAVE DINNER BEFORE GOING TO BED YESTERDAY?</h1>`;
-            const newHTML13 = `<h1>DID YOU HAVE CLOTHES TO WEAR TODAY?</h1>`;
-            const newHTML14 = `<h1>DO YOU FEEL THANKFUL TO GOD FOR ANYTHING IN YOUR LIFE?</h1>`;
-            const newHTML15 = `<h1>CONGRATULATIONS !!! </h1>`;
-            const newHTML16 = ` `;
-            const newHTML17 = ``;
 
             function generateRandomNumber() {
                 var randomNumber = Math.random(); // Generate random number between 0 and 1
@@ -249,122 +238,88 @@ vertical-align: middle;
                 return shiftedNumber;
             }
 
-            const numPeopleAgree = "NUMBER OF PEOPLE WHO AGREE";
-
-            const uiRef = {
-                div,
-                div2,
-                heading1,
-                heading2,
-                countValue,
-                barChart
-            };
-
-            const negativeContent = [{
-                div: newHTML1,
-                div2: newHTML6,
-                heading1: numPeopleAgree,
-                heading2: "",
-            }, {
-                div: newHTML2,
-                div2: newHTML6,
-                heading1: numPeopleAgree,
-                heading2: "",
-            }, {
-                div: newHTML3,
-                div2: newHTML6,
-                heading1: numPeopleAgree,
-                heading2: "",
-            }, {
-                div: newHTML4,
-                div2: newHTML6,
-                heading1: numPeopleAgree,
-                heading2: "",
-            }, {
-                div: newHTML5,
-                div2: newHTML7,
-                heading1: "Around",
-                heading2: "of the people of the world have the same thought",
-            }];
-
-            const positiveContent = [{
-                div: newHTML11,
-                div2: newHTML16,
-                heading1: numPeopleAgree,
-                heading2: "",
-            }, {
-                div: newHTML12,
-                div2: newHTML16,
-                heading1: numPeopleAgree,
-                heading2: "",
-            }, {
-                div: newHTML13,
-                div2: newHTML16,
-                heading1: numPeopleAgree,
-                heading2: "",
-            }, {
-                div: newHTML14,
-                div2: newHTML16,
-                heading1: numPeopleAgree,
-                heading2: "",
-            }, {
-                div: newHTML15,
-                div2: newHTML17,
-                heading1: "750,000,000",
-                heading2: "individuals worldwide do not have their basic necessities fulfilled, consider yourself Fortunate!",
-            }];
 
 
-            function uiUpdate(integers) {console.log(integers)
-                const contentIndex = integers[4];
-		const positive = location.search.indexOf("positive") !== -1;
-                const content = positive ? positiveContent : negativeContent;
-                const contentObj = content[contentIndex];
-		const chartBox = document.getElementById("chart-box");
-		const resultBox = document.getElementById("result-box");
+            const eventSource = new EventSource('/updates');
 
-                div.innerHTML = contentObj.div;
-                div2.innerHTML = contentObj.div2;
-                heading1.innerText = positive && contentIndex === 4 ? "" : contentObj.heading1;
-                heading2.innerText = contentObj.heading2;
- chartBox.style.display = "block";
-        resultBox.style.width = "";
-if (positive) {
-                    document.body.style.backgroundColor = "#e8cbe1";
-                }
+            eventSource.onmessage = (event) => {
+                const integers = JSON.parse(event.data);
+                console.log(integers);
 
-                if (contentIndex === 4) {
-                    let a = (integers[0] + integers[1] + integers[2] + integers[3]) / (integers[5]) * 100;
-                    var roundedValue = a.toFixed(2);
-        
-                    countValue.textContent = positive ? contentObj.heading1 : roundedValue;
-                    barChart.data.datasets[0].data = roundedValue;
+                if (integers[4] == 0) {
+                    div.innerHTML = newHTML1;
+                    div2.innerHTML = newHTML6;
+                    heading1.innerText = "NUMBER OF PEOPLE WHO AGREE";
+                    heading2.innerText = "";
 
-if (positive) {			
-	chartBox.style.display = "none";
-	resultBox.style.width = "100%";
-}
-                } else {
-                    let numberElement = integers[contentIndex];
+                    let numberElement = integers[0];
                     let number = parseInt(numberElement, 10);
                     let formattedNumber = number.toLocaleString('en-US');
 
                     countValue.textContent = formattedNumber;
-                    barChart.data.datasets[0].data = [integers[contentIndex]];
+                    barChart.data.datasets[0].data = [integers[0]];
+                    barChart.update();
                 }
-               
-                barChart.update();
-            }
+                if (integers[4] == 1) {
+                    div.innerHTML = newHTML2;
+                    div2.innerHTML = newHTML6;
+                    heading1.innerText = "NUMBER OF PEOPLE WHO AGREE";
+                    heading2.innerText = "";
 
-            const eventSource = new EventSource('/updates');
-            var oldData = ""
+                    let numberElement1 = integers[1];
+                    let number1 = parseInt(numberElement1, 10);
+                    let formattedNumber1 = number1.toLocaleString('en-US');
 
-            eventSource.onmessage = (event) => {
-//                if (oldData !== event.data) {
-                    oldData = event.data;
-                    uiUpdate(JSON.parse(event.data));
- //               }
-                
+                    countValue.textContent = formattedNumber1;
+
+                    barChart.data.datasets[0].data = [integers[1]];
+                    barChart.update();
+                }
+                if (integers[4] == 2) {
+                    div.innerHTML = newHTML3;
+                    div2.innerHTML = newHTML6;
+                    heading1.innerText = "NUMBER OF PEOPLE WHO AGREE";
+                    heading2.innerText = "";
+
+
+                    let numberElement2 = integers[2];
+                    let number2 = parseInt(numberElement2, 10);
+                    let formattedNumber2 = number2.toLocaleString('en-US');
+
+                    countValue.textContent = formattedNumber2;
+
+                    barChart.data.datasets[0].data = [integers[2]];
+                    barChart.update();
+                }
+                if (integers[4] == 3) {
+                    div.innerHTML = newHTML4;
+                    div2.innerHTML = newHTML6;
+                    heading1.innerText = "NUMBER OF PEOPLE WHO AGREE";
+                    heading2.innerText = "";
+
+                    let numberElement3 = integers[3];
+                    let number3 = parseInt(numberElement3, 10);
+                    let formattedNumber3 = number3.toLocaleString('en-US');
+
+                    countValue.textContent = formattedNumber3;
+
+                    barChart.data.datasets[0].data = [integers[3]];
+                    barChart.update();
+                }
+                if (integers[4] == 4) {
+                    div.innerHTML = newHTML5;
+                    div2.innerHTML = newHTML7;
+                    heading1.innerText = "Around ";
+                    heading2.innerText = "of the people of the world have the same thought";
+
+                    let a = (integers[0] + integers[1] + integers[2] + integers[3]) / (integers[5]) * 100;
+                    var roundedValue = a.toFixed(2);
+                    console.log(roundedValue);
+
+                    countValue.textContent = roundedValue;
+                    barChart.data.datasets[0].data = [roundedValue];
+                    barChart.update();
+                }
             };
         });
     </script>
